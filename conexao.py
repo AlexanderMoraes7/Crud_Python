@@ -25,9 +25,9 @@ class Conexao:
         self.__cursor.execute(comando)
         self.__bancoconexao.commit()
 
-    def visualizar(self):
+    def visualizar(self, tabela):
         """Method visualization"""
-        comando = 'SELECT * FROM vendas'
+        comando = f'SELECT * FROM {tabela}'
         self.__cursor.execute(comando)
         resultado = self.__cursor.fetchall()
         print(resultado)

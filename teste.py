@@ -8,7 +8,7 @@ class Provisorio(conexao.Conexao):
 
 
 novaconexao = Provisorio()
-novaconexao.inserir('ovo20unidade', 22.30)
+# novaconexao.inserir('ovo20unidade', 22.30)
 # novaconexao.deletarporid(9)
-novaconexao.visualizar()
+novaconexao.visualizar('estoque')
 novaconexao.fecharconexao()

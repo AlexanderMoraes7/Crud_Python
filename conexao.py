@@ -17,7 +17,6 @@ class Conexao:
         comando = f'INSERT INTO vendas (nome_produto, valor) VALUES ("{nome_produto}", {valor})'
         self.__cursor.execute(comando)
         self.__bancoconexao.commit()  # Edita o banco de dado
-        # resultado = __cursor.fetchall() # Ler o banco de dados
 
     def deletarporid(self, idproduto):
         """Method delete in database"""
@@ -31,6 +30,12 @@ class Conexao:
         self.__cursor.execute(comando)
         resultado = self.__cursor.fetchall()
         print(resultado)
+
+    def atualizar(self, nome_produto, valor):
+        """Method to update a product"""
+        comando = f"UPDATE vendas SET valor = {valor} where nome_produto = '{nome_produto}'"
+        self.__cursor.execute(comando)
+        self.__bancoconexao.commit()
 
     def fecharconexao(self):
         """Method to close the connection"""

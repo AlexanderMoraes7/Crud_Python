@@ -1,16 +1,24 @@
 """Testing CRUD with Python"""
+from configparser import ConfigParser
 import mysql.connector
-
 
 class Conexao:
     """Class representing a Conection"""
-    __bancoconexao = mysql.connector.connect(
-        host='localhost',
-        database='dbteste',
-        user='root',
-        password='masterkey',
-    )
-    __cursor = __bancoconexao.cursor()
+    def __init__(self):
+        """Method initialization"""
+        __config = ConfigParser()
+        __config.read('Config.ini')
+        self.__host = __config["Database"]["host"]
+        self.__database = __config["Database"]["database"]
+        self.__user = __config["Database"]["user"]
+        self.__password = __config["Database"]["password"]
+        self.__bancoconexao = mysql.connector.connect(
+            host=self.__host,
+            database=self.__database,
+            user=self.__user,
+            password=self.__password,
+            )
+        self.__cursor = self.__bancoconexao.cursor()
 
     def inserir(self, nome_produto, valor):
         """Method insert in database"""
